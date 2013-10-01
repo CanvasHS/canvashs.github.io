@@ -286,7 +286,7 @@ Triggered when a user presses and holds the left mousebutton, its location (a po
 ####Example
 {% highlight json linenos %}
 {
-    "event":"mousedown"
+    "event":"mousedown",
     "data":{
         "id": null,
         "location": {"x": 150, "y": 150}
@@ -300,7 +300,7 @@ Triggered when the mouse is pressed and released ("clicked"), same data as mouse
 ####Example
 {% highlight json linenos %}
 {
-    "event":"mouseclick"
+    "event":"mouseclick",
     "data":{
         "id": "myAwesomeShape",
         "location": {"x": 876, "y": 245}
@@ -314,7 +314,7 @@ Triggered when the mouse is released after it was down for some time, same data 
 ####Example
 {% highlight json linenos %}
 {
-    "event":"mouseclick"
+    "event":"mouseclick",
     "data":{
         "id": null,
         "location": {"x": 234, "y": 543}
@@ -328,7 +328,7 @@ Triggered when the mouse is clicked twice, same data as mousedown.
 ####Example
 {% highlight json linenos %}
 {
-    "event":"mousedoubleclick"
+    "event":"mousedoubleclick",
     "data":{
         "id": "thisShapeIsDoubleClickable",
         "location": {"x": 234, "y": 543}
@@ -342,7 +342,7 @@ Triggered when a shape is pressed and dragged from one point to another, contain
 ####Example
 {% highlight json linenos %}
 {
-    "event":"mousedrag"
+    "event":"mousedrag",
     "data":{
         "id": "thisShapeIsDoubleClickable",
         "from": {"x": 234, "y": 543}
@@ -371,7 +371,7 @@ Same as MouseEnter, but when the mouse leaves a shape
 ####Example
 {% highlight json linenos %}
 {
-    "event":"mouseleave"
+    "event":"mouseleave",
     "data":{
         "id": "thisShapeIsInterestedInMouseLeaves",
         "location": {"x": 234, "y": 543}
@@ -388,7 +388,7 @@ Triggered when a key is pressed and hold down.
 ####Example
 {% highlight json linenos %}
 {
-    "event":"keydown"
+    "event":"keydown",
     "data":{
         "keycode": "a",
         "modifiers":{
@@ -408,7 +408,7 @@ Triggered when a key is released.
 ####Example
 {% highlight json linenos %}
 {
-    "event":"keyup"
+    "event":"keyup",
     "data":{
         "keycode": "c",
         "modifiers":{
@@ -428,7 +428,7 @@ Scroll events are triggered when a user scrolls in the canvas, has xdistance and
 ####Example
 {% highlight json linenos %}
 {
-    "event":"scroll"
+    "event":"scroll",
     "data":{
         "xdistance": 20,
         "ydistance": 10

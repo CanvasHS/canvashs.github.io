@@ -15,8 +15,8 @@ Tests can be run using:
 
 #Configuring tests
 
-##Server/module
-For the module and server components configuring tests is similar. Tests are configured using [Hspec](http://hspec.github.io/). Tests should be placed in the **canvashs-module/tests** and **canvashs-server/tests** folders respectively. Related tests should be placed in seperate Spec files. Spec files will automatically be discovered.
+##Module
+For the module component configuring tests is similar. Tests are configured using [Hspec](http://hspec.github.io/). Tests should be placed in the **canvashs-module/tests** folder. Related tests should be placed in seperate Spec files. Spec files will automatically be discovered.
 
 How to write tests with Hspec can be found in the [Getting started with Hspec tutorial](http://hspec.github.io/getting-started.html).  
 

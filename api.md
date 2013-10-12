@@ -2,241 +2,152 @@
 layout: default
 ---
 #Drawing
-Drawings produce picture types, all objects used for drawing 'derive' picture.
 
 ##Basic datatypes
 Basic datatypes are used in the shapes, they serve as building block for shapes.
 
-###Point
-Points are basic structures used in the API, a point is a x and y component stored as a JSON object.
+###Color
+Colors are basic structures used in the API and can be used in the fillRGB and strokeRGB properties of shapes.
 
 ####Example
 {% highlight json %}
-{ "x": 10, "y": 20 }
+{ "fillRGB":  { "r": 255, "g": 255, "b": 255 }}
 {% endhighlight %}
 
-###Path
-Paths are lists of points and are connected form 1 to 2 to 3 etc.
+###Points
+Points are lists of numbers that represent x and y pairs. A points list always contains an even number of items.
+
+####Example
+{% highlight json linenos %}
+{ "points": [ 10, 0, 10, 10, 0, 10, 0, 0] }
+{% endhighlight %}
+
+###Identifiers
+The `id` property used in shapes is exclusive and can only be used once.
+
+##Shapes
+
+###Line
+A line consists of a list of points just like a polygon, but doesn't connect start with end. When scaling or rotating this will happen from the upper left x and y coordinates of the invisible rect incapsulating the polygon.
 
 ####Example
 {% highlight json linenos %}
 {
-    "path": [
-        { "x":0, "y":0 },
-        { "x":100, "y":0 },
-        { "x":100, "y":50}
-    ]
+    "type": "line",
+    "data": {
+        "id": "line_nr_23",
+        "points": [ 10, 0, 10, 10 ],
+        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+        "strokeWidth": 2
+    }
 }
 {% endhighlight %}
 
-##Shapes
+###Rect
+A rect is a simple rectangle with a width and a height. When scaling or rotating this will happen from the upper left x and y coordinates.
+
+In the example below scaling is also demonstrated.
+
+####Example
+{% highlight json linenos %}
+{
+    "type": "rect",
+    "data": {
+        "id": "rect_b",
+        "x": 10,
+        "y": 10,
+        "width": 10,
+        "height": 20,
+        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+        "strokeWidth": 2,
+        "fillRGB": { "r": 255, "g": 0, "b": 0 },
+        "scale": 1.5
+    }
+}
+{% endhighlight %}
+
 ###Polygon
-A polygon is a closed path where the beginning of the path is connected to the end.
+A polygon is a closed path where the beginning of the path is connected to the end. When scaling or rotating this will happen from the upper left x and y coordinates of the invisible rect incapsulating the polygon.
+
+In the example below rotation is also demonstrated.
 
 ####Example
 A simple triangle
 {% highlight json linenos %}
 {
-    "shape": "polygon",
+    "type": "polygon",
     "data": {
-        "path": [
-            { "x": 10, "y": 0 },
-            { "x": 100, "y": 10 },
-            { "x": 50, "y": 70 }
-        ]
+        "id": "polygon_nr_23",
+        "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
+        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+        "strokeWidth": 2,
+        "fillRGB": { "r": 255, "g": 0, "b": 0 },
+        "rotationDeg": 90
     }
 }
 {% endhighlight %}
 
-###Line
-A line consists of a path just like a polygon, but doesn't connect start with end.
-
-####Example
-{% highlight json linenos %}
-{
-    "shape": "line",
-    "data": {
-        "path": [
-            { "x": 10, "y": 10 },
-            { "x": 20, "y": 10 },
-            { "x": 10, "y": 20 }
-        ]
-    }
-}
-{% endhighlight %}
 
 ###Circle
-A circle is centerpoint and a radius. The total size of a circle is therefore twice the radius.
+A circle is centerpoint and a radius. The total size of a circle is therefore twice the radius. When scaling or rotating this will happen from center x and y of the circle.
 
 ####Example
 {% highlight json linenos %}
 {
-    "shape": "circle",
+    "type": "circle"
     "data": {
-        "center": { "x":10,"y":20 },
-        "radius": 100
+        "id": "circle_nr_1",
+        "x": 20,
+        "y": 20,
+        "radius": 5,
+        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+        "strokeWidth": 2,
+        "fillRGB": { "r": 255, "g": 0, "b": 0 }
     }
 }
 {% endhighlight %}
 
-###Arc
-An arc is a segment of a circle, its drawn the same way as a circle but also has a start and endpoint (in degrees counterclockwise). An arc from 90 to 270 would span from the west to the east.
+##Container
+A container is here to provide the scaling, rotation and event binding to multiple objects. The container creates its own coordinate system therefor everything inside is relative to the containers dimentions, location and rotation.
 
 ####Example
 {% highlight json linenos %}
 {
-    "shape": "arc",
+    "type": "container",
     "data": {
-        "center": { "x":10,"y":20 },
-        "radius": 100,
-        "start": 90,
-        "end": 270,
+        "id": "container_b",
+        "x": 10,
+        "y": 10,
+        "width": 100,
+        "height": 200,
+        "scale": 5,
+        "rotationDeg": 180
     }
-}
-{% endhighlight %}
-###Picture
-A picture is a shape consisting of shapes, it consists of a list of other picture types. For example, if you want to draw Mickey Mouse you would first draw its head (a circle), and then its ears (two circles).
-
-####Example
-{% highlight json linenos %}
-{
-    "shape": "picture",
-    "data": [
+    "children" : [
         {
-            "shape": "circle", 
-            "data": { "center": {"x": 100, "y": 100}, "radius": 100 }
+            "type": "circle"
+            "data": {
+                "id": "circle_nr_1",
+                "x": 20,
+                "y": 20,
+                "radius": 5,
+                "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+                "strokeWidth": 2,
+                "fillRGB": { "r": 255, "g": 0, "b": 0 }
+            }
         },
         {
-            "shape": "circle", 
-            "data": { "center": {"x": 50, "y": 50}, "radius": 50 }
-        },
-        {
-            "shape": "circle", 
-            "data": { "center": {"x": 150, "y": 50}, "radius": 50 }
+            "type": "polygon",
+            "data": {
+                "id": "polygon_nr_23",
+                "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
+                "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+                "strokeWidth": 2,
+                "fillRGB": { "r": 255, "g": 0, "b": 0 },
+                "rotationDeg": 90
+            }
         }
     ]
-}
-{% endhighlight %}
-
-#Modifiers
-Modifiers are applied to shapes. A red square with a brown stroke is a square modified to be red and modified to have a brown stroke.
-
-###Translate
-A Translation is a picture that is moved by dx an dy. Note that the "move" object is no point as it consist of x and y deltas!
-
-####Example
-{% highlight json linenos %}
-{
-    "modifier": "translate",
-    "data":
-        {
-            "move":  { "dx": 10, "dy":10 },
-            "picture": {
-                "shape": "circle", 
-                "data": { "center": {"x": 50, "y": 50}, "radius": 50 }
-            }
-        }
-}
-{% endhighlight %}
-
-###Rotate
-Rotate a picture by some amount of degrees (counterclockwise).
-
-####Example
-{% highlight json linenos %}
-{
-    "modifier": "rotate",
-    "data":
-        {
-            "rotate": 90,
-            "picture": {
-                "shape": "polygon", 
-                "data": {
-                    "path": [
-                        { "x": 10, "y": 0 },
-                        { "x": 100, "y": 10 },
-                        { "x": 50, "y": 70 }
-                    ] 
-                }
-            }
-        }
-}
-{% endhighlight %}
-
-###Scale
-Scale a picture by some x-scale and y-scale.
-
-####Example
-{% highlight json linenos %}
-{
-    "modifier": "scale",
-    "data":
-        {
-            "xscale": 0.5,
-            "yscale": 0.5,
-            "picture": {
-                "shape": "polygon", 
-                "data": {
-                    "path": [
-                        { "x": 10, "y": 0 },
-                        { "x": 100, "y": 10 },
-                        { "x": 50, "y": 70 }
-                    ] 
-                }
-            }
-        }
-}
-{% endhighlight %}
-
-###Color
-Fills a specified picture with a color (r,g,b,a).
-
-####Example
-{% highlight json linenos %}
-{
-    "modifier": "color",
-    "data":
-        {
-            "R": 255,
-            "G": 0,
-            "B": 255,
-            "A": 255,
-            "picture": {
-                "shape": "polygon", 
-                "data": {
-                    "path": [
-                        { "x": 10, "y": 0 },
-                        { "x": 100, "y": 10 },
-                        { "x": 50, "y": 70 }
-                    ] 
-                }
-            }
-        }
-}
-{% endhighlight %}
-
-###Stroke
-Sets an outline for a picture type. Has fields for stroketype and width, currently supports solid as stroketype.
-
-####Example
-{% highlight json linenos %}
-{
-    "modifier": "color",
-    "data":
-        {
-            "stroke": "solid",
-            "width": 1,
-            "picture": {
-                "shape": "polygon", 
-                "data": {
-                    "path": [
-                        { "x": 10, "y": 0 },
-                        { "x": 100, "y": 10 },
-                        { "x": 50, "y": 70 }
-                    ] 
-                }
-            }
-        }
 }
 {% endhighlight %}
 

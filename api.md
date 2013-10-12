@@ -179,7 +179,7 @@ Eventdata consists of an id and a set booleans on which events shapes will react
         "strokeRGB": { "r": 255, "g": 255, "b": 255 },
         "strokeWidth": 2,
         "fillRGB": { "r": 255, "g": 0, "b": 0 }
-    }
+    },
     "listen" : ["mousedown","mouseclick","mouseup","mousedoubleclick","mousedrag","mouseenter" "mouseleave"]
 }
 {% endhighlight %}

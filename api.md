@@ -170,7 +170,7 @@ Eventdata consists of an id and a set booleans on which events shapes will react
 ####Eventdata example
 {% highlight json linenos %}
 {
-    "type": "circle"
+    "type": "circle",
     "data": {
         "id": "circle_nr_1",
         "x": 20,

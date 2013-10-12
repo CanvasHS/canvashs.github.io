@@ -268,7 +268,7 @@ Triggered when the mouse enters a shape that is interested in that event. Note: 
 ####Example
 {% highlight json linenos %}
 {
-    "event":"mouseenter"
+    "event":"mouseenter",
     "data":{
         "id": "myAwesomeShape",
         "x": 150,

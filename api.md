@@ -30,6 +30,8 @@ The `id` property used in shapes is exclusive and can only be used once.
 ###Line
 A line consists of a list of points just like a polygon, but doesn't connect start with end. When scaling or rotating this will happen from the upper left x and y coordinates of the invisible rect incapsulating the polygon.
 
+In the example below using opacity is also demonstrated.
+
 ####Example
 {% highlight json linenos %}
 {
@@ -38,7 +40,8 @@ A line consists of a list of points just like a polygon, but doesn't connect sta
         "id": "line_nr_23",
         "points": [ 10, 0, 10, 10 ],
         "strokeRGB": { "r": 255, "g": 255, "b": 255 },
-        "strokeWidth": 2
+        "strokeWidth": 2,
+        "opacity": 0.5
     }
 }
 {% endhighlight %}
@@ -122,7 +125,7 @@ A container is here to provide the scaling, rotation and event binding to multip
         "height": 200,
         "scale": 5,
         "rotationDeg": 180
-    }
+    },
     "children" : [
         {
             "type": "circle"
@@ -167,24 +170,17 @@ Eventdata consists of an id and a set booleans on which events shapes will react
 ####Eventdata example
 {% highlight json linenos %}
 {
-    "shape": "line",
-    "event": {
-        "id": "someLineIDrew",
-        "mousedown": false,
-        "mouseclick": true,
-        "mouseup": false,
-        "mousedoubleclick": true,
-        "mousedrag": false,
-        "mouseenter": false,
-        "mouseleave": false
-    }, 
+    "type": "circle"
     "data": {
-        "path": [
-            { "x": 10, "y": 10 },
-            { "x": 20, "y": 10 },
-            { "x": 10, "y": 20 }
-        ]
+        "id": "circle_nr_1",
+        "x": 20,
+        "y": 20,
+        "radius": 5,
+        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+        "strokeWidth": 2,
+        "fillRGB": { "r": 255, "g": 0, "b": 0 }
     }
+    "listen" : ["mousedown","mouseclick","mouseup","mousedoubleclick","mousedrag","mouseenter" "mouseleave"]
 }
 {% endhighlight %}
 
@@ -192,15 +188,16 @@ When an event is triggered, javascript will search for a object that is intersec
 
 ##MouseEvents
 ###MouseDown
-Triggered when a user presses and holds the left mousebutton, its location (a point) and an id of a pressed object is transmitted (if any).
+Triggered when a user presses and holds the left mousebutton, its location (a point) and an id of a pressed object is transmitted. If no id can be transmitted the mousedown event will not be sent. The `x` and `y` coordinates are absolute to the intire canvas and not relative to the container of the object referenced by the `id`.
 
 ####Example
 {% highlight json linenos %}
 {
     "event":"mousedown",
     "data":{
-        "id": null,
-        "location": {"x": 150, "y": 150}
+        "id": "myAwesomeShape",
+        "x": 150,
+        "y": 150
     }
 }
 {% endhighlight %}
@@ -214,7 +211,8 @@ Triggered when the mouse is pressed and released ("clicked"), same data as mouse
     "event":"mouseclick",
     "data":{
         "id": "myAwesomeShape",
-        "location": {"x": 876, "y": 245}
+        "x": 150,
+        "y": 150
     }
 }
 {% endhighlight %}
@@ -227,8 +225,9 @@ Triggered when the mouse is released after it was down for some time, same data 
 {
     "event":"mouseclick",
     "data":{
-        "id": null,
-        "location": {"x": 234, "y": 543}
+        "id": "myAwesomeShape",
+        "x": 150,
+        "y": 150
     }
 }
 {% endhighlight %}
@@ -241,8 +240,9 @@ Triggered when the mouse is clicked twice, same data as mousedown.
 {
     "event":"mousedoubleclick",
     "data":{
-        "id": "thisShapeIsDoubleClickable",
-        "location": {"x": 234, "y": 543}
+        "id": "myAwesomeShape",
+        "x": 150,
+        "y": 150
     }
 }
 {% endhighlight %}
@@ -255,9 +255,9 @@ Triggered when a shape is pressed and dragged from one point to another, contain
 {
     "event":"mousedrag",
     "data":{
-        "id": "thisShapeIsDoubleClickable",
-        "from": {"x": 234, "y": 543}
-        "to": {"x": 200, "y": 512}
+        "id": "myAwesomeShape",
+        "x": 150,
+        "y": 150
     }
 }
 {% endhighlight %}
@@ -270,8 +270,9 @@ Triggered when the mouse enters a shape that is interested in that event. Note: 
 {
     "event":"mouseenter"
     "data":{
-        "id": "thisShapeIsInterestedInMouseEnters",
-        "location": {"x": 234, "y": 543}
+        "id": "myAwesomeShape",
+        "x": 150,
+        "y": 150
     }
 }
 {% endhighlight %}
@@ -284,14 +285,15 @@ Same as MouseEnter, but when the mouse leaves a shape
 {
     "event":"mouseleave",
     "data":{
-        "id": "thisShapeIsInterestedInMouseLeaves",
-        "location": {"x": 234, "y": 543}
+        "id": "myAwesomeShape",
+        "x": 150,
+        "y": 150
     }
 }
 {% endhighlight %}
 
 ##Key Events
-Key events are not connected to objects, a key is pressed with some modifiers (Ctrl/Alt/Shift/AltGr/Meta)
+Key events are not connected to objects, a key is pressed with some modifiers (Ctrl/Alt/Shift/Meta)
 
 ###KeyDown
 Triggered when a key is pressed and hold down.
@@ -301,14 +303,11 @@ Triggered when a key is pressed and hold down.
 {
     "event":"keydown",
     "data":{
-        "keycode": "a",
-        "modifiers":{
-            "control": true,
-            "alt": false,
-            "shift": false,
-            "altgr": false,
-            "meta": false
-        }
+        "key": "a",
+        "control": true,
+        "alt": false,
+        "shift": false,
+        "meta": false
     }
 }
 {% endhighlight %}
@@ -321,14 +320,11 @@ Triggered when a key is released.
 {
     "event":"keyup",
     "data":{
-        "keycode": "c",
-        "modifiers":{
-            "control": true,
-            "alt": false,
-            "shift": false,
-            "altgr": false,
-            "meta": false
-        }
+        "key": "c",
+        "control": true,
+        "alt": false,
+        "shift": false,
+        "meta": false
     }
 }
 {% endhighlight %}
@@ -341,8 +337,8 @@ Scroll events are triggered when a user scrolls in the canvas, has xdistance and
 {
     "event":"scroll",
     "data":{
-        "xdistance": 20,
-        "ydistance": 10
+        "xdelta": 20,
+        "ydelta": 10
     }
 }
 {% endhighlight %}

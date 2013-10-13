@@ -110,7 +110,7 @@ A circle is centerpoint and a radius. The total size of a circle is therefore tw
 }
 {% endhighlight %}
 
-##Container
+##Containers
 A container is here to provide the scaling, rotation and event binding to multiple objects. The container creates its own coordinate system therefor everything inside is relative to the containers dimentions, location and rotation.
 
 ####Example
@@ -128,7 +128,7 @@ A container is here to provide the scaling, rotation and event binding to multip
     },
     "children" : [
         {
-            "type": "circle"
+            "type": "circle",
             "data": {
                 "id": "circle_nr_1",
                 "x": 20,
@@ -153,6 +153,57 @@ A container is here to provide the scaling, rotation and event binding to multip
     ]
 }
 {% endhighlight %}
+
+##Sending the data
+
+All the shapes and containers in the root canvas will be sent in the root objects property "objects". The root object also contains information about the entire canvas such as, if debug is enabled.
+
+####Example
+{% highlight json linenos %}
+{
+    "debug" : true,
+    "objects" : [
+        {
+            "type": "polygon",
+            "data": {
+                "id": "polygon_nr_23",
+                "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
+                "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+                "strokeWidth": 2,
+                "fillRGB": { "r": 255, "g": 0, "b": 0 },
+                "rotationDeg": 90
+            }
+        },
+        {
+            "type": "container",
+            "data": {
+                "id": "container_b",
+                "x": 10,
+                "y": 10,
+                "width": 100,
+                "height": 200,
+                "scale": 5,
+                "rotationDeg": 180
+            },
+            "children" : [
+                {
+                    "type": "circle",
+                    "data": {
+                        "id": "circle_nr_1",
+                        "x": 20,
+                        "y": 20,
+                        "radius": 5,
+                        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+                        "strokeWidth": 2,
+                        "fillRGB": { "r": 255, "g": 0, "b": 0 }
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endhighlight %}
+
 
 #Events
 ##EventData

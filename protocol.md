@@ -107,6 +107,26 @@ A circle is centerpoint and a radius. The total size of a circle is therefore tw
 }
 {% endhighlight %}
 
+
+###Text
+Text grows out of the horziontal center x and downward from the y coordinate. It rotates around this x and y, and scales around this x and y.
+
+####Example
+{% highlight json linenos %}
+{
+    "type": "text",
+    "data": {
+        "id": "text",
+        "x": 20,
+        "y": 20,
+        "text": 'Simple Text',
+        "fontSize": 30,
+        "fontFamily": "Helvetica",
+        fill: "rgba(255,0,0,1)"
+    }
+}
+{% endhighlight %}
+
 ##Containers
 A container is here to provide the scaling, rotation and event binding to multiple objects. The container creates its own coordinate system therefor everything inside is relative to the containers dimentions, location and rotation.
 

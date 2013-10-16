@@ -7,11 +7,11 @@ layout: default
 Basic datatypes are used in the shapes, they serve as building block for shapes.
 
 ###Color
-Colors are basic structures used in the API and can be used in the fillRGB and strokeRGB properties of shapes.
+Colors are basic structures used in the API and can be used in the fill and stroke properties of shapes.
 
 ####Example
 {% highlight json %}
-{ "fillRGB":  { "r": 255, "g": 255, "b": 255 }}
+{ "fill":  "rgba(255,0,0,1)"}
 {% endhighlight %}
 
 ###Points
@@ -30,8 +30,6 @@ The `id` property used in shapes is exclusive and can only be used once.
 ###Line
 A line consists of a list of points just like a polygon, but doesn't connect start with end. When scaling or rotating this will happen from the upper left x and y coordinates of the invisible rect incapsulating the polygon.
 
-In the example below using opacity is also demonstrated.
-
 ####Example
 {% highlight json linenos %}
 {
@@ -39,9 +37,8 @@ In the example below using opacity is also demonstrated.
     "data": {
         "id": "line_nr_23",
         "points": [ 10, 0, 10, 10 ],
-        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
-        "strokeWidth": 2,
-        "opacity": 0.5
+        "stroke": "rgba(255,255,255,1)",
+        "strokeWidth": 2
     }
 }
 {% endhighlight %}
@@ -61,9 +58,9 @@ In the example below scaling is also demonstrated.
         "y": 10,
         "width": 10,
         "height": 20,
-        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+        "stroke": "rgba(255,255,255,1)",
         "strokeWidth": 2,
-        "fillRGB": { "r": 255, "g": 0, "b": 0 },
+        "fill": "rgba(255,0,0,1)",
         "scale": 1.5
     }
 }
@@ -82,9 +79,9 @@ A simple triangle
     "data": {
         "id": "polygon_nr_23",
         "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
-        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+        "stroke": "rgba(255,255,255,1)",
         "strokeWidth": 2,
-        "fillRGB": { "r": 255, "g": 0, "b": 0 },
+        "fill": "rgba(255,0,0,1)",
         "rotationDeg": 90
     }
 }
@@ -97,15 +94,15 @@ A circle is centerpoint and a radius. The total size of a circle is therefore tw
 ####Example
 {% highlight json linenos %}
 {
-    "type": "circle"
+    "type": "circle",
     "data": {
         "id": "circle_nr_1",
         "x": 20,
         "y": 20,
         "radius": 5,
-        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+        "stroke": "rgba(255,255,255,1)",
         "strokeWidth": 2,
-        "fillRGB": { "r": 255, "g": 0, "b": 0 }
+        "fill": "rgba(255,0,0,1)"
     }
 }
 {% endhighlight %}
@@ -134,9 +131,9 @@ A container is here to provide the scaling, rotation and event binding to multip
                 "x": 20,
                 "y": 20,
                 "radius": 5,
-                "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+                "stroke": "rgba(255,255,255,1)",
                 "strokeWidth": 2,
-                "fillRGB": { "r": 255, "g": 0, "b": 0 }
+                "fill": "rgba(255,0,0,1)"
             }
         },
         {
@@ -144,9 +141,9 @@ A container is here to provide the scaling, rotation and event binding to multip
             "data": {
                 "id": "polygon_nr_23",
                 "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
-                "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+                "stroke": "rgba(255,255,255,1)",
                 "strokeWidth": 2,
-                "fillRGB": { "r": 255, "g": 0, "b": 0 },
+                "fill": "rgba(255,0,0,1)",
                 "rotationDeg": 90
             }
         }
@@ -168,9 +165,9 @@ All the shapes and containers in the root canvas will be sent in the root object
             "data": {
                 "id": "polygon_nr_23",
                 "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
-                "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+                "stroke": "rgba(255,255,255,1)",
                 "strokeWidth": 2,
-                "fillRGB": { "r": 255, "g": 0, "b": 0 },
+                "fill": "rgba(255,0,0,1)",
                 "rotationDeg": 90
             }
         },
@@ -193,9 +190,9 @@ All the shapes and containers in the root canvas will be sent in the root object
                         "x": 20,
                         "y": 20,
                         "radius": 5,
-                        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+                        "stroke": "rgba(255,255,255,1)",
                         "strokeWidth": 2,
-                        "fillRGB": { "r": 255, "g": 0, "b": 0 }
+                        "fill": "rgba(255,0,0,1)"
                     }
                 }
             ]
@@ -227,9 +224,9 @@ Eventdata consists of an id and a set booleans on which events shapes will react
         "x": 20,
         "y": 20,
         "radius": 5,
-        "strokeRGB": { "r": 255, "g": 255, "b": 255 },
+        "stroke": "rgba(255,255,255,1)",
         "strokeWidth": 2,
-        "fillRGB": { "r": 255, "g": 0, "b": 0 }
+        "fill": "rgba(255,0,0,1)"
     },
     "listen" : ["mousedown","mouseclick","mouseup","mousedoubleclick","mousedrag","mouseenter" "mouseleave"]
 }
@@ -344,7 +341,7 @@ Same as MouseEnter, but when the mouse leaves a shape
 {% endhighlight %}
 
 ##Key Events
-Key events are not connected to objects, a key is pressed with some modifiers (Ctrl/Alt/Shift/Meta)
+Key events are not connected to objects, a key is pressed with some modifiers (Ctrl/Alt/Shift/Super). The super key is equal to the windows key.
 
 ###KeyDown
 Triggered when a key is pressed and hold down.
@@ -358,7 +355,7 @@ Triggered when a key is pressed and hold down.
         "control": true,
         "alt": false,
         "shift": false,
-        "meta": false
+        "super": false
     }
 }
 {% endhighlight %}
@@ -375,7 +372,7 @@ Triggered when a key is released.
         "control": true,
         "alt": false,
         "shift": false,
-        "meta": false
+        "super": false
     }
 }
 {% endhighlight %}

@@ -119,10 +119,10 @@ Text grows out of the horziontal center x and downward from the y coordinate. It
         "id": "text",
         "x": 20,
         "y": 20,
-        "text": 'Simple Text',
+        "text": "Simple Text",
         "fontSize": 30,
         "fontFamily": "Helvetica",
-        fill: "rgba(255,0,0,1)"
+        "fill": "rgba(255,0,0,1)"
     }
 }
 {% endhighlight %}

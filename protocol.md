@@ -171,7 +171,7 @@ A container is here to provide the scaling, rotation and event binding to multip
 }
 {% endhighlight %}
 
-##Sending the data
+##The Canvas
 
 All the shapes and containers in the root canvas will be sent in the root objects property "objects". The root object also contains information about the entire canvas such as, if debug is enabled.
 
@@ -179,6 +179,9 @@ All the shapes and containers in the root canvas will be sent in the root object
 {% highlight json linenos %}
 {
     "debug" : true,
+    "fullscreen" : true,
+    "width" : 800,
+    "height: 600,
     "objects" : [
         {
             "type": "polygon",

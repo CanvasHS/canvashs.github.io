@@ -61,7 +61,7 @@ In the example below scaling is also demonstrated.
         "stroke": "rgba(255,255,255,1)",
         "strokeWidth": 2,
         "fill": "rgba(255,0,0,1)",
-        "scale": 1.5
+        "scaleX": 1.5
     }
 }
 {% endhighlight %}
@@ -140,7 +140,8 @@ A container is here to provide the scaling, rotation and event binding to multip
         "y": 10,
         "width": 100,
         "height": 200,
-        "scale": 5,
+        "scaleX": 5.0,
+        "scaleY": 10.0,
         "rotationDeg": 180
     },
     "children" : [
@@ -202,7 +203,7 @@ All the shapes and containers in the root canvas will be sent in the root object
                 "y": 10,
                 "width": 100,
                 "height": 200,
-                "scale": 5,
+                "scaleX": 5,
                 "rotationDeg": 180
             },
             "children" : [

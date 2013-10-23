@@ -181,7 +181,7 @@ All the shapes and containers in the root canvas will be sent in the root object
     "debug" : true,
     "fullscreen" : true,
     "width" : 800,
-    "height: 600,
+    "height": 600,
     "objects" : [
         {
             "type": "polygon",
@@ -230,13 +230,13 @@ All the shapes and containers in the root canvas will be sent in the root object
 All shapes drawn above are not interactive, clicking/dragging/etc. won't trigger events. Eventdata can be added to a shape with the "event" key, when the user presses the mousebutton and the cursor intersects a shape with eventdata a message is sent to the server informing that a specific shape is pressed.
 
 Eventdata consists of an id and a set booleans on which events shapes will react. Currently supported are:
-* MouseDown (User presses and holds left mouse button)
-* MouseClick (User clicks left mouse button)
-* MouseUp (User lets go of left mouse button)
-* MouseDoubleClick (User clicks left mouse button twice)
-* MouseDrag (User presses leftmousebutton and drags around)
-* MouseEnter (Mousecursor enters shape)
-* MouseLeave (Mousecursor leaves shape)
+* Mouse down (User presses and holds left mouse button)
+* Mouse click (User clicks left mouse button)
+* Mouse up (User lets go of left mouse button)
+* Mouse double click (User clicks left mouse button twice)
+* Mouse drag (User presses leftmousebutton and drags around)
+* Mouse enter (Mousecursor enters shape)
+* Mouse leave (Mousecursor leaves shape)
 
 ####Eventdata example
 {% highlight json linenos %}

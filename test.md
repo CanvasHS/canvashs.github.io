@@ -3,7 +3,7 @@ layout: default
 ---
 #Running tests
 ##First time configuration
-Tests are configured in the canvashs.cabal file. To run the javascript tests from the cabal file [phantomjs](http://phantomjs.org/) is required and put in the PATH [(how to put it in your PATH)](http://stackoverflow.com/a/6448469/359582). Before tests can be run they have to be configured. Run 
+Tests are configured in the canvashs.cabal file. To run the javascript tests from the cabal file [phantomjs](http://phantomjs.org/) is required and put in the PATH [(how to put it in your PATH)](http://stackoverflow.com/a/6448469/359582). Also make sure that the cabal bin files are in your PATH as well (should be somewhere like %userprofile%\AppData\Roaming\cabal\bin, ~/.cabal/bin). Before tests can be run they have to be configured. Run 
 
     cabal update
     cabal install --enable-tests
@@ -16,7 +16,7 @@ Tests can be run using:
 #Configuring tests
 
 ##Module
-For the module component configuring tests is similar. Tests are configured using [Hspec](http://hspec.github.io/). Tests should be placed in the **canvashs-module/tests** folder. Related tests should be placed in seperate Spec files. Spec files will automatically be discovered.
+For the module component configuring tests is similar. Tests are configured using [Hspec](http://hspec.github.io/). Tests should be placed in the **canvashs-module/tests** folder. For each module a seperate Spec file should be created, each spec file should end with Spec.hs. For example: tests for CanvasHs/Module/SubModule.hs should have a spec file at tests/CanvasHs/Module/SubModuleSpec.hs. Spec files will automatically be discovered.
 
 How to write tests with Hspec can be found in the [Getting started with Hspec tutorial](http://hspec.github.io/getting-started.html).  
 

@@ -237,7 +237,7 @@ Eventdata consists of an id and a set booleans on which events shapes will react
 * Mouse double click (User clicks left mouse button twice)
 * Mouse drag (User presses leftmousebutton and drags around)
 * Mouse enter (Mousecursor enters shape)
-* Mouse leave (Mousecursor leaves shape)
+* Mouse out (Mousecursor leaves shape)
 
 ####Eventdata example
 {% highlight json linenos %}
@@ -252,7 +252,7 @@ Eventdata consists of an id and a set booleans on which events shapes will react
         "strokeWidth": 2,
         "fill": "rgba(255,0,0,1)"
     },
-    "listen" : ["mousedown","mouseclick","mouseup","mousedoubleclick","mousedrag","mouseenter" "mouseleave"]
+    "listen" : ["mousedown","mouseclick","mouseup","mousedoubleclick","mousedrag","mouseover" "mouseout"]
 }
 {% endhighlight %}
 
@@ -334,13 +334,13 @@ Triggered when a shape is pressed and dragged from one point to another, contain
 }
 {% endhighlight %}
 
-###MouseEnter
-Triggered when the mouse enters a shape that is interested in that event. Note: only works on shapes that have eventdata and are interested in MouseEnter events.
+###MouseOver
+Triggered when the mouse enters a shape that is interested in that event. Note: only works on shapes that have eventdata and are interested in MouseOver events.
 
 ####Example
 {% highlight json linenos %}
 {
-    "event":"mouseenter",
+    "event":"mouseover",
     "data":{
         "id": "myAwesomeShape",
         "x": 150,
@@ -349,13 +349,13 @@ Triggered when the mouse enters a shape that is interested in that event. Note: 
 }
 {% endhighlight %}
 
-###MouseLeave
-Same as MouseEnter, but when the mouse leaves a shape
+###MouseOut
+Same as MouseOver, but when the mouse leaves a shape
 
 ####Example
 {% highlight json linenos %}
 {
-    "event":"mouseleave",
+    "event":"mouseout",
     "data":{
         "id": "myAwesomeShape",
         "x": 150,

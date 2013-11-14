@@ -1,20 +1,18 @@
 ---
 layout: default
 ---
-#Drawing
-
-##Basic datatypes
+#Basic datatypes
 Basic datatypes are used in the shapes, they serve as building block for shapes.
 
-###Color
-Colors are basic structures used in the API and can be used in the fill and stroke properties of shapes.
+##Color
+Colors are basic structures used in the API and can be used in the fill and stroke properties of shapes. Colors have red/green/blue in the range 0 to 255, and alpha in the range 0.0 to 1.0
 
 ####Example
 {% highlight json %}
-{ "fill":  "rgba(255,0,0,1)"}
+{"r": 255, "g": 255, "b": 255, "a": 1.0}
 {% endhighlight %}
 
-###Points
+##Points
 Points are lists of numbers that represent x and y pairs. A points list always contains an even number of items.
 
 ####Example
@@ -22,107 +20,201 @@ Points are lists of numbers that represent x and y pairs. A points list always c
 { "points": [ 10, 0, 10, 10, 0, 10, 0, 0] }
 {% endhighlight %}
 
-###Identifiers
-The `id` property used in shapes is exclusive and can only be used once.
+##Common properties
+All shapes have keys for the following properties in their data:
 
-##Shapes
+* `scaleX (float)` scales a figure in the x direction
+* `scaleY (float)` scales a figure in the y direction
+* `rotationDeg (int)` rotates a figure around a given corner for some degrees
+* `offset ([int])` specifies the location on the shape to rotate and scale around
+* `fill (Color)` fill color of the shape
+* `stroke (Color)` stroke color of the shape
+* `strokeWidth` width of the shape (in px)
 
-###Line
-A line consists of a list of points just like a polygon, but doesn't connect start with end. When scaling or rotating this will happen from the upper left x and y coordinates of the invisible rect incapsulating the polygon.
+#Shapes
 
-####Example
+##Line
+A line consists of a list of points that will be connected. When scaling or rotating this will happen from the upper left x and y coordinates of the invisible rect incapsulating the line.
+
+####Specific keys
+
+* `points ([int])` List of points that define the line (always divisible by 2)
+
+####Bare Minimum
+*White (default) line from (10,0) to (10,10)*
 {% highlight json linenos %}
 {
     "type": "line",
     "data": {
-        "id": "line_nr_23",
+        "points": [ 10, 0, 10, 10 ]
+    }
+}
+{% endhighlight %}
+
+####Realworld Example
+*Red line from (10, 0) to (10, 10)*
+{% highlight json linenos %}
+{
+    "type": "line",
+    "data": {
         "points": [ 10, 0, 10, 10 ],
-        "stroke": "rgba(255,255,255,1)",
+        "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
         "strokeWidth": 2
     }
 }
 {% endhighlight %}
 
-###Rect
-A rect is a simple rectangle with a width and a height. When scaling or rotating this will happen from the upper left x and y coordinates.
+##Polygon
+A polygon is a closed path where the beginning of the path is connected to the end (unlike a Line). When scaling or rotating this will happen from the upper left x and y coordinates of the invisible rect incapsulating the polygon.
 
-In the example below scaling is also demonstrated.
+####Specific keys
+* `points ([int])` List of points that define the line (always divisible by 2)
 
-####Example
-{% highlight json linenos %}
-{
-    "type": "rect",
-    "data": {
-        "id": "rect_b",
-        "x": 10,
-        "y": 10,
-        "width": 10,
-        "height": 20,
-        "stroke": "rgba(255,255,255,1)",
-        "strokeWidth": 2,
-        "fill": "rgba(255,0,0,1)",
-        "scaleX": 1.5
-    }
-}
-{% endhighlight %}
-
-###Polygon
-A polygon is a closed path where the beginning of the path is connected to the end. When scaling or rotating this will happen from the upper left x and y coordinates of the invisible rect incapsulating the polygon.
-
-In the example below rotation is also demonstrated.
-
-####Example
-A simple triangle
+####Bare Minimum
+*White (default) polygon from (73, 192) to (73, 160) to (340, 23) to (500, 109) to (499, 139) to (342, 93) to (73, 192)*
 {% highlight json linenos %}
 {
     "type": "polygon",
     "data": {
-        "id": "polygon_nr_23",
         "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
-        "stroke": "rgba(255,255,255,1)",
-        "strokeWidth": 2,
-        "fill": "rgba(255,0,0,1)",
-        "rotationDeg": 90
     }
 }
 {% endhighlight %}
 
+####Realworld Example
+*Green polygon (semitransparant) with Yellow stroke (2px) from (73, 192) to (73, 160) to (340, 23) to (500, 109) to (499, 139) to (342, 93) to (73, 192)*
+{% highlight json linenos %}
+{
+    "type": "polygon",
+    "data": {
+        "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
+        "stroke": {"r": 255, "g": 255, "b": 0, "a": 1.0},
+        "strokeWidth": 2,
+        "fill": {"r":0, "g":255, "b":0, "a":0.75}
+    }
+}
+{% endhighlight %}
 
-###Circle
+##Rect
+A rect is a simple rectangle with a width and a height. When scaling or rotating this will happen from the upper left x and y coordinates.
+
+####Specific keys
+* `x (int)` the x location of the upper corner of the rect
+* `y (int)` the y location of the upper corner of the rect
+* `width (int)` the width of the rect
+* `height (int)` the height of the rect
+
+####Bare Minimum
+*White (default) square from (10, 10) to (20, 30)*
+{% highlight json linenos %}
+{
+    "type": "rect",
+    "data": {
+        "x": 10,
+        "y": 10,
+        "width": 10,
+        "height": 20,
+    }
+}
+{% endhighlight %}
+
+####Realworld Example
+*Green square with blue stroke from (10, 10) to (20, 30)*
+{% highlight json linenos %}
+{
+    "type": "rect",
+    "data": {
+        "x": 10,
+        "y": 10,
+        "width": 10,
+        "height": 20,
+        "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
+        "strokeWidth": 2,
+        "fill": {"r":0, "g":255, "b":0, "a":0.75}
+    }
+}
+{% endhighlight %}
+
+##Circle
 A circle is centerpoint and a radius. The total size of a circle is therefore twice the radius. When scaling or rotating this will happen from center x and y of the circle.
 
-####Example
+####Specific keys
+* `x (int)` the x location of the center of the circle
+* `y (int)` the y location of the center of the circle
+* `radius (int)` the radius of the circle
+
+####Bare Minimum
+*White (default) circle with center (20, 20) and radius 5*
 {% highlight json linenos %}
 {
     "type": "circle",
     "data": {
-        "id": "circle_nr_1",
+        "x": 20,
+        "y": 20,
+        "radius": 5
+    }
+}
+{% endhighlight %}
+
+####Realworld Example
+*Black circle with purple stroke (2px) with center (20, 20) and radius 5*
+{% highlight json linenos %}
+{
+    "type": "circle",
+    "data": {
         "x": 20,
         "y": 20,
         "radius": 5,
-        "stroke": "rgba(255,255,255,1)",
+        "stroke": {"r": 255, "g": 0, "b": 255, "a": 1.0},
         "strokeWidth": 2,
-        "fill": "rgba(255,0,0,1)"
+        "fill": {"r":0, "g":0, "b":0, "a":1.0}
     }
 }
 {% endhighlight %}
 
 
-###Text
-Text grows out of the horziontal center x and downward from the y coordinate. It rotates around this x and y, and scales around this x and y.
+##Text
+Text has some text to display and some properties defining the font/size/etc.
 
-####Example
+####Specific keys
+* `x (int)` the x location of the text (rendering depends on the alignment)
+* `y (int)` the y location of the text (rendering depends on the alignment)
+* `fontFamily (string)` The font to use for this text, no guarantees are made about availability
+* `fontSize (int)` The size of the font used (in px)
+* `align (string)` The location of the alignmentpoint (Center, Left, Right)
+* `bold (boolean)` Whether the text should be rendered bold
+* `italic (boolean)` Whether the text should be rendered italic
+* `underline (boolean)` Whether the text should be underlined
+* `text (string)` The text to render
+
+####Bare Minimum
+*`Hello Protocol!` centered around (20, 20) with default font and size (chosen by the client)*
 {% highlight json linenos %}
 {
     "type": "text",
     "data": {
-        "id": "text",
         "x": 20,
         "y": 20,
-        "text": "Simple Text",
-        "fontSize": 30,
+        "text": "Hello Protocol!",
+        "align": "center"
+    }
+}
+{% endhighlight %}
+
+####Realworld Example
+*`Hello Rotation and Scaling!` in Helvetica (14px) centered around (20, 20) with a rotation of 20 degrees around (20, 20) and a xScale of 2.0*
+{% highlight json linenos %}
+{
+    "type": "text",
+    "data": {
+        "x": 20,
+        "y": 20,
+        "text": "Hello Rotation and Scaling!",
+        "align": "center",
         "fontFamily": "Helvetica",
-        "fill": "rgba(255,0,0,1)"
+        "fontSize": 14,
+        "rotationDeg": 20,
+        "xScale": 2.0
     }
 }
 {% endhighlight %}
@@ -152,9 +244,9 @@ A container is here to provide the scaling, rotation and event binding to multip
                 "x": 20,
                 "y": 20,
                 "radius": 5,
-                "stroke": "rgba(255,255,255,1)",
+                "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
                 "strokeWidth": 2,
-                "fill": "rgba(255,0,0,1)"
+                "fill": {"r":0, "g":255, "b":0, "a":0.75}
             }
         },
         {
@@ -162,9 +254,9 @@ A container is here to provide the scaling, rotation and event binding to multip
             "data": {
                 "id": "polygon_nr_23",
                 "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
-                "stroke": "rgba(255,255,255,1)",
+                "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
                 "strokeWidth": 2,
-                "fill": "rgba(255,0,0,1)",
+                "fill": {"r":0, "g":255, "b":0, "a":0.75},
                 "rotationDeg": 90
             }
         }
@@ -189,9 +281,9 @@ All the shapes and containers in the root canvas will be sent in the root object
             "data": {
                 "id": "polygon_nr_23",
                 "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
-                "stroke": "rgba(255,255,255,1)",
+                "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
                 "strokeWidth": 2,
-                "fill": "rgba(255,0,0,1)",
+                "fill": {"r":0, "g":255, "b":0, "a":0.75},
                 "rotationDeg": 90
             }
         },
@@ -214,9 +306,9 @@ All the shapes and containers in the root canvas will be sent in the root object
                         "x": 20,
                         "y": 20,
                         "radius": 5,
-                        "stroke": "rgba(255,255,255,1)",
+                        "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
                         "strokeWidth": 2,
-                        "fill": "rgba(255,0,0,1)"
+                        "fill": {"r":0, "g":255, "b":0, "a":0.75}
                     }
                 }
             ]

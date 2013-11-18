@@ -312,9 +312,12 @@ Triggered when the mouse is clicked twice, same data as mousedown.
 {
     "event":"mousedoubleclick",
     "data":{
-        "id": "myAwesomeShape",
-        "x": 150,
-        "y": 150
+        "id1": "myAwesomeShape",
+        "x1": 150,
+        "y1": 150,
+        "id2": "myAwesomeShapeThatIDragAndDroppedTo"
+        "x2": 250,
+        "y2": 250
     }
 }
 {% endhighlight %}
@@ -401,14 +404,14 @@ Triggered when a key is released.
 }
 {% endhighlight %}
 
-##Generic events
 ###Scroll
-Scroll events are triggered when a user scrolls in the canvas, has xdistance and ydistance values
+Scroll events are triggered when a user scrolls an element, id, xdelta and ydelta's are sent to the client
 ####Example
 {% highlight json linenos %}
 {
     "event":"scroll",
     "data":{
+        "id": "myAwesomeShape",
         "xdelta": 20,
         "ydelta": 10
     }

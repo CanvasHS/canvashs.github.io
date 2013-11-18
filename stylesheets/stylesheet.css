@@ -425,3 +425,11 @@ Small Device Styles
   }
 
 }
+
+.non-flex {
+  width: auto !important;
+  height: auto !important;
+}
+.right {
+  float: right;
+}

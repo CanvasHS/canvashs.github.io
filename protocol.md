@@ -266,57 +266,7 @@ A container is here to provide the scaling, rotation and event binding to multip
 
 ##The Canvas
 
-All the shapes and containers in the root canvas will be sent in the root objects property "objects". The root object also contains information about the entire canvas such as, if debug is enabled.
-
-####Example
-{% highlight json linenos %}
-{
-    "debug" : true,
-    "fullscreen" : true,
-    "width" : 800,
-    "height": 600,
-    "objects" : [
-        {
-            "type": "polygon",
-            "data": {
-                "id": "polygon_nr_23",
-                "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
-                "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
-                "strokeWidth": 2,
-                "fill": {"r":0, "g":255, "b":0, "a":0.75},
-                "rotationDeg": 90
-            }
-        },
-        {
-            "type": "container",
-            "data": {
-                "id": "container_b",
-                "x": 10,
-                "y": 10,
-                "width": 100,
-                "height": 200,
-                "scaleX": 5,
-                "rotationDeg": 180
-            },
-            "children" : [
-                {
-                    "type": "circle",
-                    "data": {
-                        "id": "circle_nr_1",
-                        "x": 20,
-                        "y": 20,
-                        "radius": 5,
-                        "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
-                        "strokeWidth": 2,
-                        "fill": {"r":0, "g":255, "b":0, "a":0.75}
-                    }
-                }
-            ]
-        }
-    ]
-}
-{% endhighlight %}
-
+The container that represents the root of the canvas will be sent as the root object. By Default the canvas will resize to the dimentions of the root container. If you want to go FullWindow or FullScreen you should use actions. After going FullWindow or FullScreen you can adjust the positioning of shapes when the `ResizeWindow` event is called. This happens automaticly if you go FullWindow of FullScreen.
 
 #Events
 ##EventData

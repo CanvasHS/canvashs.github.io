@@ -354,12 +354,9 @@ Triggered when the mouse is clicked twice, same data as mousedown.
 {
     "event":"mousedoubleclick",
     "data":{
-        "id1": "myAwesomeShape",
-        "x1": 150,
-        "y1": 150,
-        "id2": "myAwesomeShapeThatIDragAndDroppedTo"
-        "x2": 250,
-        "y2": 250
+        "id": "myAwesomeShape",
+        "x": 150,
+        "y": 150
     }
 }
 {% endhighlight %}
@@ -372,11 +369,14 @@ Triggered when a shape is pressed and dragged from one point to another, contain
 {
     "event":"mousedrag",
     "data":{
-        "id": "myAwesomeShape",
-        "x": 150,
-        "y": 150
+        "id1": "myAwesomeShape",
+        "x1": 150,
+        "y1": 150,
+        "x2": 250,
+        "y2": 250
     }
 }
+
 {% endhighlight %}
 
 ###MouseOver

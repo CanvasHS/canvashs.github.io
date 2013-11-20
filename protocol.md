@@ -509,3 +509,30 @@ Scroll events are triggered when a user scrolls an element, id, xdelta and ydelt
     }
 }
 {% endhighlight %}
+
+## Other Events
+
+###ReadFile
+
+###ResizeWindow
+
+#Action
+
+##Window Size Actions
+
+###PresentCanvasFullWindow
+
+###PresentCanvasFullScreen
+
+###PresentCanvasFixedSize (Width INT, Height INT)
+
+##File Actions
+
+###PresentFileOpenDialog
+
+###SaveFile (File BLOB)
+
+###StartAcceptingFileOpen (Multiple BOOL)
+Used for drag'n'drop file open.
+
+###StopAcceptingFileOpen

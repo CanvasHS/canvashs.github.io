@@ -513,15 +513,13 @@ Actions are messages that trigger certain javascript functions from the server. 
 }
 {% endhighlight %}
 
-##Window Size Actions
-
 ###WindowDisplayType
 Type is an enumeration where 0 is `FizedSize` 1 is `FullWindow` and 2 is `FullScreen`. Width and height are required with `FixedSize` and are ignored with the other types.
 
 ####Example
 {% highlight json linenos %}
 {
-    "event":"windowdisplaytype",
+    "action":"windowdisplaytype",
     "data":{
         "type": 0,
         "width": 800,
@@ -529,20 +527,64 @@ Type is an enumeration where 0 is `FizedSize` 1 is `FullWindow` and 2 is `FullSc
     }
 }
 {
-    "event":"windowdisplaytype",
+    "action":"windowdisplaytype",
     "data":{
         "type": 1
     }
 }
 {% endhighlight %}
 
+###Debugger
+Simple action to enable or disable the canvas debugger.
+
+####Example
+{% highlight json linenos %}
+{
+    "action":"debugger",
+    "data":{
+        "enabled": true
+    }
+}
+{% endhighlight %}
+
 ##File Actions
 
-###PresentFileOpenDialog
+###PresentFileSelectDialog
+Simple action to present a file select dialog box. The `multiple` parameter indicates that multiple files can be uploaded.
 
-###SaveFile (File BLOB)
+####Example
+{% highlight json linenos %}
+{
+    "action":"presentfileselectdialog",
+    "data": {
+        "multiple": true
+    }
+}
+{% endhighlight %}
 
-###StartAcceptingFileOpen (Multiple BOOL)
-Used for drag'n'drop file open.
+###SaveFile
+Action to sava a file, this will trigger the browser to download.
 
-###StopAcceptingFileOpen
+####Example
+{% highlight json linenos %}
+{
+    "action":"debugger",
+    "data":{
+        "file": "data" // base64 string
+    }
+}
+{% endhighlight %}
+
+###AcceptFileDragNDrop
+Simple action to enable drag'n'drop file uploads. The `multiple` parameter indicates that multiple files can be uploaded.
+
+####Example
+{% highlight json linenos %}
+{
+    "action":"acceptfiledragndrop",
+    "data":{
+        "enabled": true,
+        "multiple": true
+    }
+}
+{% endhighlight %}

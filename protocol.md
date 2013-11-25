@@ -268,6 +268,50 @@ A container is here to provide the scaling, rotation and event binding to multip
 
 The container that represents the root of the canvas will be sent as the root object. By Default the canvas will resize to the dimentions of the root container. If you want to go FullWindow or FullScreen you should use actions. After going FullWindow or FullScreen you can adjust the positioning of shapes when the `ResizeWindow` event is called. This happens automaticly if you go FullWindow of FullScreen.
 
+####Example
+{% highlight json linenos %}
+{
+    "root": {
+        "type": "container",
+        "data": {
+            "id": "container_b",
+            "x": 10,
+            "y": 10,
+            "width": 100,
+            "height": 200,
+            "scaleX": 5.0,
+            "scaleY": 10.0,
+            "rotationDeg": 180
+        },
+        "children" : [
+            {
+                "type": "circle",
+                "data": {
+                    "id": "circle_nr_1",
+                    "x": 20,
+                    "y": 20,
+                    "radius": 5,
+                    "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
+                    "strokeWidth": 2,
+                    "fill": {"r":0, "g":255, "b":0, "a":0.75}
+                }
+            },
+            {
+                "type": "polygon",
+                "data": {
+                    "id": "polygon_nr_23",
+                    "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
+                    "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
+                    "strokeWidth": 2,
+                    "fill": {"r":0, "g":255, "b":0, "a":0.75},
+                    "rotationDeg": 90
+                }
+            }
+        ]
+    }
+}
+{% endhighlight %}
+
 #Events
 ##EventData
 All shapes drawn above are not interactive, clicking/dragging/etc. won't trigger events. Eventdata can be added to a shape with the "event" key, when the user presses the mousebutton and the cursor intersects a shape with eventdata a message is sent to the server informing that a specific shape is pressed.
@@ -469,7 +513,7 @@ Event triggered when a file is uploaded after drop-in or selection in the file d
 {
     "event":"readfile",
     "data":{
-        
+        "path":"/home/Dude/images/lolcat.png"
     }
 }
 {% endhighlight %}
@@ -488,6 +532,15 @@ Event triggered when the window resizes. This event is also triggerd on first ti
 {% endhighlight %}
 
 #Action
+
+####Example
+{% highlight json linenos %}
+{
+    "action": {
+        …
+    }
+}
+{% endhighlight %}
 
 ##Window Size Actions
 

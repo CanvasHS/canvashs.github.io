@@ -271,44 +271,12 @@ The container that represents the root of the canvas will be sent as the root ob
 ####Example
 {% highlight json linenos %}
 {
-    "root": {
-        "type": "container",
-        "data": {
-            "id": "container_b",
-            "x": 10,
-            "y": 10,
-            "width": 100,
-            "height": 200,
-            "scaleX": 5.0,
-            "scaleY": 10.0,
-            "rotationDeg": 180
-        },
-        "children" : [
-            {
-                "type": "circle",
-                "data": {
-                    "id": "circle_nr_1",
-                    "x": 20,
-                    "y": 20,
-                    "radius": 5,
-                    "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
-                    "strokeWidth": 2,
-                    "fill": {"r":0, "g":255, "b":0, "a":0.75}
-                }
-            },
-            {
-                "type": "polygon",
-                "data": {
-                    "id": "polygon_nr_23",
-                    "points": [73, 192, 73, 160, 340, 23, 500, 109, 499, 139, 342, 93],
-                    "stroke": {"r": 255, "g": 0, "b": 0, "a": 1.0},
-                    "strokeWidth": 2,
-                    "fill": {"r":0, "g":255, "b":0, "a":0.75},
-                    "rotationDeg": 90
-                }
-            }
-        ]
-    }
+    "shape": {
+        …
+    },
+    "actions": [{
+        …
+    }]
 }
 {% endhighlight %}
 
@@ -532,23 +500,41 @@ Event triggered when the window resizes. This event is also triggerd on first ti
 {% endhighlight %}
 
 #Action
-
+Actions are messages that trigger certain javascript functions from the server. So it is like events but from server to client, from haskell to javascript.
 ####Example
 {% highlight json linenos %}
 {
-    "action": {
+    "shape": {
         …
-    }
+    },
+    "actions": [{
+        …
+    }]
 }
 {% endhighlight %}
 
 ##Window Size Actions
 
-###PresentCanvasFullWindow
+###WindowDisplayType
+Type is an enumeration where 0 is `FizedSize` 1 is `FullWindow` and 2 is `FullScreen`. Width and height are required with `FixedSize` and are ignored with the other types.
 
-###PresentCanvasFullScreen
-
-###PresentCanvasFixedSize (Width INT, Height INT)
+####Example
+{% highlight json linenos %}
+{
+    "event":"windowdisplaytype",
+    "data":{
+        "type": 0,
+        "width": 800,
+        "height": 600
+    }
+}
+{
+    "event":"windowdisplaytype",
+    "data":{
+        "type": 1
+    }
+}
+{% endhighlight %}
 
 ##File Actions
 

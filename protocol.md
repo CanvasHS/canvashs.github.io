@@ -463,8 +463,29 @@ Scroll events are triggered when a user scrolls an element, id, xdelta and ydelt
 ## Other Events
 
 ###ReadFile
+Event triggered when a file is uploaded after drop-in or selection in the file dialog. To open the fill dialog send a `PresentFileOpenDialog` action.
+####Example
+{% highlight json linenos %}
+{
+    "event":"readfile",
+    "data":{
+        
+    }
+}
+{% endhighlight %}
 
 ###ResizeWindow
+Event triggered when the window resizes. This event is also triggerd on first time launch.
+####Example
+{% highlight json linenos %}
+{
+    "event":"resizewindow",
+    "data":{
+        "width": 800,
+        "height": 600
+    }
+}
+{% endhighlight %}
 
 #Action
 

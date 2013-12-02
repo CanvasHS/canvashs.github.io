@@ -481,7 +481,7 @@ Event triggered when a file is uploaded after drop-in or selection in the file d
 {
     "event":"readfile",
     "data":{
-        "path":"/home/Dude/images/lolcat.png"
+        "file": "data base 64 string"
     }
 }
 {% endhighlight %}
@@ -568,9 +568,9 @@ Action to sava a file, this will trigger the browser to download.
 ####Example
 {% highlight json linenos %}
 {
-    "action":"debugger",
+    "action":"savefile",
     "data":{
-        "file": "data" // base64 string
+        "file": "data base 64 string"
     }
 }
 {% endhighlight %}

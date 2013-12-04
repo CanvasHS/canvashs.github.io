@@ -474,12 +474,12 @@ Scroll events are triggered when a user scrolls an element, id, xdelta and ydelt
 
 ## Other Events
 
-###ReadFile
+###Upload
 Event triggered when a file is uploaded after drop-in or selection in the file dialog. To open the fill dialog send a `PresentFileOpenDialog` action.
 ####Example
 {% highlight json linenos %}
 {
-    "event":"readfile",
+    "event":"upload",
     "data":{
         "file": "data base 64 string"
     }
@@ -549,26 +549,26 @@ Simple action to enable or disable the canvas debugger.
 
 ##File Actions
 
-###PresentFileSelectDialog
+###RequestUpload
 Simple action to present a file select dialog box. The `multiple` parameter indicates that multiple files can be uploaded.
 
 ####Example
 {% highlight json linenos %}
 {
-    "action":"presentfileselectdialog",
+    "action":"requestupload",
     "data": {
         "multiple": true
     }
 }
 {% endhighlight %}
 
-###SaveFile
+###Download
 Action to sava a file, this will trigger the browser to download.
 
 ####Example
 {% highlight json linenos %}
 {
-    "action":"savefile",
+    "action":"download",
     "data":{
         "file": "data base 64 string"
     }

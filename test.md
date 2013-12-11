@@ -3,7 +3,7 @@ layout: default
 ---
 #Running tests
 ##First time configuration
-Tests are configured in the canvashs.cabal file. To run the javascript tests from the cabal file [phantomjs](http://phantomjs.org/) is required and put in the PATH [(how to put it in your PATH)](http://stackoverflow.com/a/6448469/359582). Also make sure that the cabal bin files are in your PATH as well (should be somewhere like %userprofile%\AppData\Roaming\cabal\bin, ~/.cabal/bin). Before tests can be run they have to be configured. Run 
+Tests are configured in the canvashs.cabal file. To run the javascript tests from the cabal file [phantomjs](http://phantomjs.org/) is required and put in the PATH [(how to put it in your PATH)](http://stackoverflow.com/a/6448469/359582) (for Homebrew use: ```brew update && brew install phantomjs```). Also make sure that the cabal bin files are in your PATH as well (should be somewhere like %userprofile%\AppData\Roaming\cabal\bin, ~/.cabal/bin). Before tests can be run they have to be configured. Run 
 
     cabal update
     cabal install --enable-tests
@@ -22,7 +22,7 @@ How to write tests with Hspec can be found in the [Getting started with Hspec tu
 
 
 ##Client side
-For the client side implementation tests are configured using [Jasmine](http://pivotal.github.io/jasmine/). Tests should be placed in the **canvashs-client/tests/spec** folder. Related tests should be placed in separate Spec files. Spec files should be placed in the **canvashs-client/tests/index.html**, in this way:
+For the client side implementation tests are configured using [Jasmine](http://pivotal.github.io/jasmine/). Tests should be placed in the **canvashs-client/tests/spec** folder. Related tests should be placed in separate Spec files. Spec files should be placed in the **canvashs-client/tests/test.html**, in this way:
 
 	<!-- include spec files here... -->
 	<script type="text/javascript" src="spec/specfile.js"></script>

@@ -500,6 +500,19 @@ Event triggered when the window resizes. This event is also triggerd on first ti
 }
 {% endhighlight %}
 
+###Prompt
+Simple event to return entered values in a prompt.
+
+####Example
+{% highlight json linenos %}
+{
+    "event":"prompt",
+    "data":{
+        "value": "John Doe"
+    }
+}
+{% endhighlight %}
+
 #Action
 Actions are messages that trigger certain javascript functions from the server. So it is like events but from server to client, from haskell to javascript.
 ####Example
@@ -548,6 +561,20 @@ Simple action to enable or disable the canvas debugger.
 }
 {% endhighlight %}
 
+###Prompt
+Simple action to prompt the user for string input. Placeholder is optional. After entering the action will return a prompt event. Prompting is blocking so while entering the interface will halt.
+
+####Example
+{% highlight json linenos %}
+{
+    "action":"prompt",
+    "data":{
+        "message": "Please enter your name…",
+        "placeholder": "John Doe"
+    }
+}
+{% endhighlight %}
+
 ##File Actions
 
 ###RequestUpload
@@ -589,3 +616,5 @@ Simple action to enable drag'n'drop file uploads. The `multiple` parameter indic
     }
 }
 {% endhighlight %}
+
+

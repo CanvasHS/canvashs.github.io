@@ -292,6 +292,7 @@ Eventdata consists of an id and a set booleans on which events shapes will react
 * Mouse drag (User presses leftmousebutton and drags around)
 * Mouse enter (Mousecursor enters shape)
 * Mouse out (Mousecursor leaves shape)
+* Scroll (User scrolls on shape)
 
 ####Eventdata example
 {% highlight json linenos %}
@@ -421,6 +422,20 @@ Same as MouseOver, but when the mouse leaves a shape
 }
 {% endhighlight %}
 
+###Scroll
+Scroll events are triggered when a user scrolls an element, id, xdelta and ydelta's are sent to the client
+####Example
+{% highlight json linenos %}
+{
+    "event":"scroll",
+    "data":{
+        "id": "myAwesomeShape",
+        "xdelta": 20,
+        "ydelta": 10
+    }
+}
+{% endhighlight %}
+
 ##Key Events
 Key events are not connected to objects, a key is pressed with some modifiers (Ctrl/Alt/Shift/Super). The super key is equal to the windows key.
 
@@ -454,20 +469,6 @@ Triggered when a key is released.
         "alt": false,
         "shift": false,
         "super": false
-    }
-}
-{% endhighlight %}
-
-###Scroll
-Scroll events are triggered when a user scrolls an element, id, xdelta and ydelta's are sent to the client
-####Example
-{% highlight json linenos %}
-{
-    "event":"scroll",
-    "data":{
-        "id": "myAwesomeShape",
-        "xdelta": 20,
-        "ydelta": 10
     }
 }
 {% endhighlight %}

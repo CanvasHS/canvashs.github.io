@@ -501,7 +501,7 @@ Event triggered when the window resizes. This event is also triggerd on first ti
 {% endhighlight %}
 
 ###Prompt
-Simple event to return entered values in a prompt.
+Simple event to return entered values in a prompt. When a prompt is canceled no event will be sent.
 
 ####Example
 {% highlight json linenos %}

@@ -145,7 +145,7 @@ An Arc has a centerpoint, a radius and an angle. The angle states how large the 
 * `angleDeg (int)` the angle of the arc in degrees
 
 ####Example
-*White (default) arc with center (20, 20) and radius 5*
+*White (default) arc with center (20, 20) and radius 70*
 {% highlight json linenos %}
 {
     "type": "arc",

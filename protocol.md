@@ -135,8 +135,31 @@ A rect is a simple rectangle with a width and a height. When scaling or rotating
 }
 {% endhighlight %}
 
+##Arc
+An Arc has a centerpoint, a radius and an angle. The angle states how large the arc should be in degrees. When scaling or rotating, this will happen from center x and y of the center of the imaginary circle that results if the arc would be extended to a full circle.
+
+####Specific keys
+* `x (int)` the x location of the center of the arc
+* `y (int)` the y location of the center of the arc
+* `radius (int)` the radius of the arc
+* `angleDeg (int)` the angle of the arc in degrees
+
+####Example
+*White (default) arc with center (20, 20) and radius 5*
+{% highlight json linenos %}
+{
+    "type": "arc",
+    "data": {
+        "x": 20,
+        "y": 20,
+        "radius": 70,
+        "angleDeg": 80
+    }
+}
+{% endhighlight %}
+
 ##Circle
-A circle is centerpoint and a radius. The total size of a circle is therefore twice the radius. When scaling or rotating this will happen from center x and y of the circle.
+A circle has a centerpoint and a radius. The total size of a circle is therefore twice the radius. When scaling or rotating, this will happen from center x and y of the circle.
 
 ####Specific keys
 * `x (int)` the x location of the center of the circle
@@ -299,7 +322,6 @@ Eventdata consists of an id and a set booleans on which events shapes will react
 {
     "type": "circle",
     "data": {
-        "id": "circle_nr_1",
         "x": 20,
         "y": 20,
         "radius": 5,
@@ -307,11 +329,14 @@ Eventdata consists of an id and a set booleans on which events shapes will react
         "strokeWidth": 2,
         "fill": "rgba(255,0,0,1)"
     },
-    "listen" : ["mousedown","mouseclick","mouseup","mousedoubleclick","mousedrag","mouseover", "mouseout"]
+    "eventData": {
+    	"eventId": "circle_nr_1",
+    	"listen" : ["mousedown","mouseclick","mouseup","mousedoubleclick","mousedrag","mouseover", "mouseout"]
+    }
 }
 {% endhighlight %}
 
-When an event is triggered, javascript will search for a object that is intersected and is interested in that event, if a object was found, the object key is populated with the ID of that object. The raw event is always sent to the server, even if no object was interested.
+When an event is triggered, javascript will search for a object that is intersected and is interested in that event, if a object was found, the object key is populated with the ID of that object.
 
 ##MouseEvents
 ###MouseDown
